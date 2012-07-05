@@ -21,3 +21,8 @@ fields that defines a test.
 All fields except 'doc' and 'patch' are optional.  Test records consisting only of a comment are also OK.
 
 This test set is not complete - additions are welcome!
+
+Credits
+-------
+
+The seed test set was adapted from https://github.com/bruth/jsonpatch-js/blob/master/test.js .
