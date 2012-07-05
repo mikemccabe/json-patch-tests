@@ -18,6 +18,6 @@ fields that defines a test.
 - comment: A string describing the test
 - disabled: True if the test should be skipped.
 
-All fields except 'doc' and 'patch' are optional.
+All fields except 'doc' and 'patch' are optional.  Test records consisting only of a comment are also OK.
 
 This test set is not complete - additions are welcome!
