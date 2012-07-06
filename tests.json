@@ -180,7 +180,42 @@
       "patch": [{"test": "/foo", "value": [1, 2]}],
       "error": "test op should fail" },
 
-    { "doc": {"foo": 1},
+    { "comment": "json-pointer tests" },
+
+    { "comment": "Whole document",
+      "doc": { "foo": 1 },
+      "patch": [{"test":"", "value": {"foo": 1}}] },
+
+    { "comment": "Empty-string element",
+      "doc": { "": 1 },
+      "patch": [{"test":"/", "value": 1}] },
+
+    { "doc": {
+            "foo": ["bar", "baz"],
+            "": 0,
+            "a/b": 1,
+            "c%d": 2,
+            "e^f": 3,
+            "g|h": 4,
+            "i\\j": 5,
+            "k\"l": 6,
+            " ": 7,
+            "m~n": 8
+            },
+      "patch": [{"test": "/foo", "value": ["bar", "baz"]},
+                {"test": "/foo/0", "value": "bar"},
+                {"test": "/", "value": 0},
+                {"test": "/a~1b", "value": 1},
+                {"test": "/c%d", "value": 2},
+                {"test": "/e^f", "value": 3},
+                {"test": "/g|h", "value": 4},
+                {"test": "/i\\j", "value": 5},
+                {"test": "/k\"l", "value": 6},
+                {"test": "/ ", "value": 7},
+                {"test": "/m~0n", "value": 8}] },
+
+    { "comment": "Move to same location has no effect",
+      "doc": {"foo": 1},
       "patch": [{"move": "/foo", "to": "/foo"}],
       "expected": {"foo": 1} },
 
