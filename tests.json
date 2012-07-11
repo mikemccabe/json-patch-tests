@@ -229,5 +229,7 @@
 
     { "doc": {"baz": [{"qux": "hello"}], "bar": 1},
       "patch": [{"copy":"/baz/0", "to": "/boo"}],
-      "expected": {"baz":[{"qux":"hello"}],"bar":1,"boo":{"qux":"hello"}} }
+      "expected": {"baz":[{"qux":"hello"}],"bar":1,"boo":{"qux":"hello"}} },
+
+    { "comment": "tests complete" }
 ]
