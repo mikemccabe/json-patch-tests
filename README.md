@@ -15,8 +15,14 @@ fields that defines a test.
 - patch: The patch(es) to apply.
 - expected: The expected resulting document, OR
 - error: A string describing an expected error
-- comment: A string describing the test.
+- comment: A string describing the test
+- disabled: True if the test should be skipped.
 
-'expected', 'error' and 'comment' are optional.
+All fields except 'doc' and 'patch' are optional.  Test records consisting only of a comment are also OK.
 
 This test set is not complete - additions are welcome!
+
+Credits
+-------
+
+The seed test set was adapted from https://github.com/bruth/jsonpatch-js/blob/master/test.js .
