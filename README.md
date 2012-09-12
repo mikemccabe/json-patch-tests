@@ -26,3 +26,4 @@ Credits
 -------
 
 The seed test set was adapted from https://github.com/bruth/jsonpatch-js/blob/master/test.js .
+
