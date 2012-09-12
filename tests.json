@@ -160,6 +160,11 @@
       "expected": ["foo", ["bar", "baz"]],
       "comment": "value in array replace not flattened" },
 
+    { "comment": "spurious patch properties",
+      "doc": {"foo": 1},
+      "patch": [{"test": "/foo", "value": 1, "spurious": 1}],
+      "expected": {"foo": 1} },
+
     { "doc": {"foo": null},
       "patch": [{"test": "/foo", "value": null}],
       "comment": "null value should still be valid obj property" },
