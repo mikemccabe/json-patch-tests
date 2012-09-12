@@ -189,7 +189,8 @@
 
     { "comment": "Whole document",
       "doc": { "foo": 1 },
-      "patch": [{"test":"", "value": {"foo": 1}}] },
+      "patch": [{"test":"", "value": {"foo": 1}}],
+      "disabled": true },
 
     { "comment": "Empty-string element",
       "doc": { "": 1 },
