@@ -1,29 +1,31 @@
-json-patch-tests
+JSON Patch Tests
 ================
 
-Test cases for implementations of json-patch:
+These are test cases for implementations of the [IETF JSON Patch
+draft](http://tools.ietf.org/html/draft-ietf-appsawg-json-patch).
 
-http://tools.ietf.org/html/draft-ietf-appsawg-json-patch-02
 
-Test format
+Test Format
 -----------
 
-The test file contains a list of test records, each with a few
-fields that defines a test.
+Each test file is a JSON document that contains an array of test records. A
+test record is an object with the following members:
 
 - doc: The JSON document to test against
-- patch: The patch(es) to apply.
+- patch: The patch(es) to apply
 - expected: The expected resulting document, OR
 - error: A string describing an expected error
 - comment: A string describing the test
-- disabled: True if the test should be skipped.
+- disabled: True if the test should be skipped
 
-All fields except 'doc' and 'patch' are optional.  Test records consisting only of a comment are also OK.
+All fields except 'doc' and 'patch' are optional. Test records consisting only
+of a comment are also OK.
 
-This test set is not complete, or even correct - help welcome!
+These tests are not complete, or even correct - help welcome!
 
 Credits
 -------
 
-The seed test set was adapted from https://github.com/bruth/jsonpatch-js/blob/master/test.js .
-
+The seed test set was adapted from Byron Ruth's
+[jsonpatch-js](https://github.com/bruth/jsonpatch-js/blob/master/test.js) and
+extended by [Mike McCabe](https://github.com/mikemccabe).
