@@ -90,9 +90,10 @@
       "patch": [{"op": "add", "path": "/bar", "value": null}],
       "expected": {"foo": 1, "bar": null} },
 
-    { "doc": {"foo": 1},
+    { "comment": "0 can be an array index or object element name",
+      "doc": {"foo": 1},
       "patch": [{"op": "add", "path": "/0", "value": "bar"}],
-      "error": "Array operation on object target" },
+      "expected": {"foo": 1, "0": "bar" } },
 
     { "doc": ["foo"],
       "patch": [{"op": "add", "path": "/1", "value": "bar"}],
