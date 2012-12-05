@@ -185,5 +185,19 @@
   { "op": "add", "path": "/baz", "value": "qux", "op": "remove" }
 ],
     "error": "operation has two 'op' members"
-  }  
+  },
+  
+  { 
+    "comment": "~ Escape Ordering",
+    "doc": {
+       "/": 9,
+       "~1": 10 
+    },
+    "patch": [{"op": "test", "path": "/~01", "value":"foo"}],
+    "expected": {
+       "/": 9,
+       "~1": "foo"       
+    }
+  }
+    
 ]
