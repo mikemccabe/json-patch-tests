@@ -24,10 +24,10 @@
       "patch": [],
       "expected": {"foo":{"bar":2, "foo": 1}} },
 
-    { "comment": "add to existing null-valued field should err",
+    { "comment": "add replaces any existing field",
       "doc": {"foo": null},
       "patch": [{"op": "add", "path": "/foo", "value":1}],
-      "error": "'add' target already set" },
+      "expected": {"foo": 1} },
 
     { "comment": "toplevel array",
       "doc": [],
