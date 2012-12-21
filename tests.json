@@ -108,7 +108,7 @@
       "expected": ["bar", "foo", "sil"] },
 
     { "doc": ["foo", "sil"],
-      "patch": [{"op":" add", "path": "/2", "value": "bar"}],
+      "patch": [{"op":"add", "path": "/2", "value": "bar"}],
       "expected": ["foo", "sil", "bar"] },
 
     { "doc": ["foo", "sil"],
