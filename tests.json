@@ -108,8 +108,18 @@
       "expected": ["bar", "foo", "sil"] },
 
     { "doc": ["foo", "sil"],
-      "patch": [{"op":" add", "path": "/2", "value": "bar"}],
+      "patch": [{"op":"add", "path": "/2", "value": "bar"}],
       "expected": ["foo", "sil", "bar"] },
+
+    { "comment": "test against implementation-specific numeric parsing",
+      "doc": {"1e0": "foo"},
+      "patch": [{"op": "test", "path": "/1e0", "value": "foo"}],
+      "expected": {"1e0": "foo"} },
+
+    { "comment": "test with bad number should fail",
+      "doc": ["foo", "bar"],
+      "patch": [{"op": "test", "path": "/1e0", "value": "bar"}],
+      "error": "test op shouldn't get array element 1" },
 
     { "doc": ["foo", "sil"],
       "patch": [{"op": "add", "path": "/bar", "value": 42}],
@@ -223,20 +233,35 @@
 
     { "comment": "Move to same location has no effect",
       "doc": {"foo": 1},
-      "patch": [{"op": "move", "path": "/foo", "to": "/foo"}],
+      "patch": [{"op": "move", "from": "/foo", "path": "/foo"}],
       "expected": {"foo": 1} },
 
     { "doc": {"foo": 1, "baz": [{"qux": "hello"}]},
-      "patch": [{"op": "move", "path": "/foo", "to": "/bar"}],
+      "patch": [{"op": "move", "from": "/foo", "path": "/bar"}],
       "expected": {"baz": [{"qux": "hello"}], "bar": 1} },
 
     { "doc": {"baz": [{"qux": "hello"}], "bar": 1},
-      "patch": [{"op": "move", "path": "/baz/0/qux", "to": "/baz/1"}],
+      "patch": [{"op": "move", "from": "/baz/0/qux", "path": "/baz/1"}],
       "expected": {"baz": [{}, "hello"], "bar": 1} },
 
     { "doc": {"baz": [{"qux": "hello"}], "bar": 1},
-      "patch": [{"op": "copy", "path": "/baz/0", "to": "/boo"}],
+      "patch": [{"op": "copy", "from": "/baz/0", "path": "/boo"}],
       "expected": {"baz":[{"qux":"hello"}],"bar":1,"boo":{"qux":"hello"}} },
+
+    { "comment": "replacing the root of the document is possible with add",
+      "doc": {"foo": "bar"},
+      "patch": [{"op": "add", "path": "", "value": {"baz": "qux"}}],
+      "expected": {"baz":"qux"}},
+
+    { "comment": "Adding to \"/-\" adds to the end of the array",
+      "doc": [ 1, 2 ],
+      "patch": [ { "op": "add", "path": "/-", "value": { "foo": [ "bar", "baz" ] } } ],
+      "expected": [ 1, 2, { "foo": [ "bar", "baz" ] } ]},
+
+    { "comment": "Adding to \"/-\" adds to the end of the array, even n levels down",
+      "doc": [ 1, 2, [ 3, [ 4, 5 ] ] ],
+      "patch": [ { "op": "add", "path": "/2/1/-", "value": { "foo": [ "bar", "baz" ] } } ],
+      "expected": [ 1, 2, [ 3, [ 4, 5, { "foo": [ "bar", "baz" ] } ] ] ]},
 
     { "comment": "tests complete" }
 ]
