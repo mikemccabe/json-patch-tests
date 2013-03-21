@@ -244,6 +244,16 @@
       "patch": [{"op": "move", "from": "/baz/0/qux", "path": "/baz/1"}],
       "expected": {"baz": [{}, "hello"], "bar": 1} },
 
+    { "comment": "Move out of bounds upper",
+      "doc": {"baz": [{"qux": "hello"}], "bar": 1},
+      "patch": [{"op": "move", "path": "/baz/0/qux", "to": "/baz/5"}],
+      "error": "Out of bounds (upper)" },
+
+    { "comment": "Move out of bounds lower",
+      "doc": {"baz": [{"qux": "hello"}], "bar": 1},
+      "patch": [{"op": "move", "path": "/baz/0/qux", "to": "/baz/-1"}],
+      "error": "Out of bounds (lower)" },
+
     { "doc": {"baz": [{"qux": "hello"}], "bar": 1},
       "patch": [{"op": "copy", "from": "/baz/0", "path": "/boo"}],
       "expected": {"baz":[{"qux":"hello"}],"bar":1,"boo":{"qux":"hello"}} },
